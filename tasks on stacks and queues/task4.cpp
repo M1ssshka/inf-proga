@@ -30,5 +30,28 @@ void reverse(stack *&h) {
 }
 
 int main() {
-
+    stack *h = NULL;
+    stack *glas = NULL;
+    stack *sogl = NULL;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        char t;
+        cin >> t;
+        if (t == 'a' || t == 'e' || t == 'i' || t == 'o' || t == 'u') {
+            push(glas, t);
+        }
+        else {
+            push(sogl, t);
+        }
+    }
+    while(glas || sogl) {
+        char t;
+        if (sogl) t = pop(sogl);
+        else t = pop(glas);
+        push(h, t);
+    }
+    while(h) {
+        cout << pop(h) << ' ';
+    }
 }
