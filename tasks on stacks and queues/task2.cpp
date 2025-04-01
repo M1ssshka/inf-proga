@@ -6,7 +6,7 @@ struct queue {
     queue *next;
 };
 
-void push(queue *&h,queue *&t, int x) {
+void push(queue *&h, queue *&t, int x) {
     queue *r = new queue;
     r->inf = x;
     r->next = NULL;
@@ -33,11 +33,34 @@ int pop(queue *&h, queue *&t) {
 int main() {
     int n;
     cin >> n;
-    queue *head;
-    queue *tail;
+    queue *head = NULL;
+    queue *tail = NULL;
+    queue *head1 = NULL;
+    queue *tail1 = NULL;
+    queue *resh = NULL;
+    queue *rest = NULL;    
     for (int i = 0; i < n; i++) {
         int t;
         cin >> t;
         push(head, tail, t);
+    }
+    int first = pop(head, tail);
+    push(resh, rest, first);
+    int max_num = first;
+    while(tail) {
+        int temp = pop(head, tail);
+        max_num = max(max_num, temp);
+        push(head1, tail1, temp);
+    } 
+    push(resh, rest, max_num);
+    while(tail1) {
+        int temp = pop(head1, tail1);
+        push(resh, rest, temp);
+        if (temp == first) {
+            push(resh, rest, max_num);
+        }
+    }
+    while(rest) {
+        cout << pop(resh, rest) << ' ';
     }
 }
