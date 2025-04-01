@@ -29,6 +29,38 @@ void reverse(stack *&h) {
     h = head1;
 }
 
+bool prime_number(int x) {
+    if (x == 1) return false;
+    for (int i = 2; i*i <= x; i++) {
+        if (x % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+stack *result(stack *&h) {
+    stack *res = NULL;
+    while (h) {
+        int x = pop(h);
+        if (!prime_number(x)) {
+            push(res, x);
+        }
+    }
+    return res;
+}
+
 int main() {
-    
+    stack *h = NULL;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int t;
+        cin >> t;
+        push(h, t);
+    }
+    h = result(h);
+    while (h) {
+        cout << pop(h) << ' ';
+    }
 }
