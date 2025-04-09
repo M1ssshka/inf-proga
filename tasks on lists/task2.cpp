@@ -100,5 +100,14 @@ void res(list *&h, list *&t, int n) {
 }
 
 int main() {
-    
+    list *h = nullptr;
+    list *t = nullptr;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int temp;
+        cin >> temp;
+        push(h, t, temp);
+    }
+    res(h, t, n);
 }
