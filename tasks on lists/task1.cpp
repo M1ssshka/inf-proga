@@ -86,5 +86,32 @@ void del_list(list *&h, list *&t) {
 }
 
 int main() {
-    
+    list *h = nullptr;
+    list *t = nullptr;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int temp;
+        cin >> temp;
+        push(h, t, temp);
+    }
+    list *temp = h;
+    int min1 = temp->inf, min2 = min1;
+    list *min1_id = temp; 
+    list *min2_id = temp;
+    temp = temp->next;
+    while(temp) {
+        if (min1 > temp->inf) {
+            min1 = temp->inf;
+            min1_id = temp;
+        }
+        else if (min2 >= temp->inf) {
+            min2 = temp->inf;
+            min2_id = temp;
+        }
+        temp = temp->next;
+    }
+    del_node(h, t, min1_id);
+    del_node(h, t, min2_id);
+    print(h, t);
 }
