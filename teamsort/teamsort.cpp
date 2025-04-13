@@ -24,7 +24,46 @@ void insertion_sort(vector<int> &a) {
 }
 
 vector<int> merge(vector<int> &a, vector<int> &b) {
-    
+    int len = a.size() + b.size();
+    vector<int> c(len);
+    int i = 0;
+    int j = 0;
+    int curr = 0;
+    while((i + j) <= len - 1) {
+        if (j >= b.size()) {
+            while(i < a.size()) {
+                c[curr] = a[i];
+                curr++;
+                i++;
+            }
+        }
+        else if (i >= a.size()) {
+            while(j < b.size()) {
+                c[curr] = b[j];
+                curr++;
+                j++;
+            }
+        }
+        else if (a[i] < b[j] && i < a.size() && j < b.size()) {
+            c[curr] = a[i];
+            curr++;
+            i++;
+        }
+        else if (a[i] > b[j] && i < a.size() && j < b.size()) {
+            c[curr] = b[j];
+            curr++;
+            j++;
+        }
+        else if (i < a.size() && j < b.size()) {
+            c[curr] = a[i];
+            curr++;
+            c[curr] = b[j];
+            curr++;
+            i++;
+            j++;
+        }
+    }
+    return c;
 }
 
 vector<int> timsort(vector<int> a) {
