@@ -13,7 +13,14 @@ int compute_minrun(int n) {
 }
 
 void insertion_sort(vector<int> &a) {
-
+    int n = a.size();
+    for (int i = 1; i < n; i++) {
+        int j = i;
+        while(j > 0 && a[j] < a[j - 1]) {
+            swap(a[j], a[j - 1]);
+            j--;
+        }
+    }
 }
 
 vector<int> merge(vector<int> &a, vector<int> &b) {
