@@ -154,5 +154,16 @@ vector<int> timsort(vector<int> a) {
 }
 
 int main() {
-
+    vector<int> a = {4, 1, 2, 3, 9, 8, 7, 3, 5, 4,
+        3, 2, 7, 4, 2, 9, 3, 1, 6, 2,
+        2, 5, 7, 4, 6, 1, 7, 3, 5, 3,
+        5, 7, 2, 8, 5, 1, 4, 2, 3, 4, 
+        0, 5, 2, 4, 3, 2, 1, 6, 7, 8, 
+        9, 2, 4, 5, 9, 8, 7, 6, 3, 1, 
+        2, 4, 1, 3, 5};
+    vector<int> sort_a;
+    sort_a = timsort(a);
+    for (int i = 0; i < sort_a.size(); i++) {
+        cout << sort_a[i] << ' ';
+    } 
 }
