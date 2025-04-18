@@ -70,6 +70,33 @@ int pop_s(stack *&h) {
     return i;
 }
 
+void dfs(stack *&h, vector<vector<int>> gr, vector<int> &used, int x) {
+    used[x] = 1;
+    cout << x + 1 << ' ';
+    push_s(h, x);
+    bool fl = false;
+    while(h) {
+        x = h->inf;
+        int y;
+        for (int i = 0; i < gr[x].size(); i++) {
+            if (!used[gr[x][i]]) {
+                y = gr[x][i];
+                fl = true;
+                break;
+            }
+        }
+        if (fl) {
+            used[y] = 1;
+            push_s(h, y);
+            cout << y + 1 << ' ';
+            fl = false;
+        }
+        else {
+            pop_s(h);
+        }
+    }
+}
+
 int main() {
 
 }
