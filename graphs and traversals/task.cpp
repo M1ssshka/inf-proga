@@ -98,5 +98,40 @@ void dfs(stack *&h, vector<vector<int>> gr, vector<int> &used, int x) {
 }
 
 int main() {
-
+    int n, m; 
+    cin >> n >> m; //n - количество рёбер, m - количество вершин
+    vector<vector<int>> gr(m);
+    for (int i = 0; i < n; i++) {
+        int v, u;
+        cin >> v >> u;
+        v--; u--;
+        gr[v].push_back(u);
+        gr[u].push_back(v);
+    }
+    vector<int> used(n);
+    stack *h_s = nullptr;
+    int x;
+    cin >> x;
+    x--;
+    cout << "DFS:" << '\n';
+    dfs(h_s, gr, used, x);
+    cout << '\n';
+    for (int i = 0; i < n; i++) {
+        if (!used[i]) {
+            dfs(h_s, gr, used, i);
+            cout << '\n';
+        }
+    }
+    used.assign(m, {});
+    queue *h_q = nullptr;
+    queue *t_q = nullptr;
+    cout << "BFS:" << '\n';
+    bfs(h_q, t_q, gr, used, x);
+    cout << '\n';
+    for (int i = 0; i < n; i++) {
+        if (!used[i]) {
+            bfs(h_q, t_q, gr, used, i);
+            cout << '\n';
+        }
+    }
 }
