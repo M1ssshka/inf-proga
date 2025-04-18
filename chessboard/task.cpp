@@ -85,12 +85,12 @@ int main() {
     p.assign(8, vector<node> (8));
     used.assign(8, vector<int> (8));
     bfs(begin, end);
-    vector<pair<int, int>> ans;
+    vector<pair<char, char>> ans;
     while((end.x != begin.x) || (end.y != begin.y)) {
-        ans.push_back({end.x, end.y});
+        ans.push_back({char(end.x + '0' + 17), char(end.y + '0' + 1)});
         end = p[end.x][end.y];    
     }
-    ans.push_back({end.x, end.y});
+    ans.push_back({char(end.x + '0' + 17), char(end.y + '0' + 1)});
     for (int i = ans.size() - 1; i >= 0; i--) {
         cout << ans[i].first << ans[i].second << " ";
     }
