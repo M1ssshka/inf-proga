@@ -50,6 +50,26 @@ void bfs(queue *&h, queue *&t, vector<vector<int>> gr, vector<int> &used, int x)
     }
 }
 
+struct stack{
+    int inf;
+    stack *next;
+};
+
+void push_s(stack *&h, int x) {
+    stack *r = new stack;
+    r->inf = x;
+    r->next = h;
+    h = r;
+}
+
+int pop_s(stack *&h) {
+    int i = h->inf;
+    stack *r = h;
+    h = h->next;
+    delete r;
+    return i;
+}
+
 int main() {
-    
+
 }
