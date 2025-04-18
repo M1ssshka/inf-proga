@@ -74,5 +74,25 @@ void bfs(node c0, node end) {
 }
 
 int main() {
-    
+    cout << "Введите через пробел начальную и конечную позицию: ";
+    string str;
+    getline(cin, str);
+    node begin, end;
+    begin.x = str[0] - '0' - 17;
+    begin.y = str[1] - '0' - 1;
+    end.x = str[3] - '0' - 17;  
+    end.y = str[4] - '0' - 1;
+    p.assign(8, vector<node> (8));
+    used.assign(8, vector<int> (8));
+    bfs(begin, end);
+    vector<pair<int, int>> ans;
+    while((end.x != begin.x) || (end.y != begin.y)) {
+        ans.push_back({end.x, end.y});
+        end = p[end.x][end.y];    
+    }
+    ans.push_back({end.x, end.y});
+    for (int i = ans.size() - 1; i >= 0; i--) {
+        cout << ans[i].first << ans[i].second << " ";
+    }
+    cout << '\n';
 }
