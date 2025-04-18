@@ -37,6 +37,18 @@ node pop(queue *&h, queue *&t) {
     return i;
 }
 
+bool is_board(node t) {
+    return (t.x < 8 && t.x >= 0 && t.y < 8 && t.y >= 0);
+}
+
+vector<vector<node>> p;
+vector<vector<int>> used;
+queue *h = nullptr;
+queue *t = nullptr;
+vector<int> dx = {1, 1, 2, -2, -1, -1, -2, 2};
+vector<int> dy = {2, -2, 1, -1, -2, 2, 1, 1};
+vector<queue> pr;
+
 int main() {
     
 }
