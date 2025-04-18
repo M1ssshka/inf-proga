@@ -49,6 +49,30 @@ vector<int> dx = {1, 1, 2, -2, -1, -1, -2, 2};
 vector<int> dy = {2, -2, 1, -1, -2, 2, 1, 1};
 vector<queue> pr;
 
+void bfs(node c0, node end) {
+    push(h, t, c0);
+    used[c0.x][c0.y] = 1;
+    while(h) {
+    c0 = h->inf;
+    pop(h, t);
+        for (int i = 0; i < 8; i++) {
+            node c;
+            c.x = dx[i] + c0.x; 
+            c.y = dy[i] + c0.y;
+            if (is_board(c)) {
+                if(!used[c.x][c.y]) {
+                    used[c.x][c.y] = 1;
+                    p[c.x][c.y] = c0;
+                    push(h, t, c);
+                    if (c.x == end.x && c.y == end.y) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+
 int main() {
     
 }
