@@ -68,6 +68,18 @@ tree *find(tree *tr, int x) {
         return find(tr->right, x);
 }
 
+int heightNode(tree *tr)
+{
+    if (tr)
+    {
+        return max(heightNode(tr->left), heightNode(tr->right)) + 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main() {
-    
+
 }
