@@ -138,4 +138,21 @@ void print_tree(tree *tr, int k)
 
 int main()
 {
+    int n, x;
+    cin >> n >> x;
+    tree *tr1 = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        int t;
+        cin >> t;
+        insert(tr1, t);
+    }
+    tree *X = find(tr1, x);
+    print_tree(tr1, heightNode(tr1));
+    int ans = heightNode(X) - 1;
+    (ans > 0) ? (cout << ans) : (cout << "Node not found\n");
+    cout << '\n';
 }
+
+// 5 2
+// 5 7 3 2 4
