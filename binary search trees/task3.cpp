@@ -113,6 +113,75 @@ tree *Next(tree *tr, int x)
     return y;
 }
 
+void del(tree *&tr, tree *v)
+{
+    tree *p = v->parent;
+    if (!p && !tr->right && !tr->left)
+        tr = NULL;
+    else if (!v->left && !v->right)
+    {
+        if (p->left == v)
+            p->left = NULL;
+        if (p->right == v)
+            p->right = NULL;
+        delete v;
+    }
+    else if (!v->left || !v->right)
+    {
+        if (!p)
+        {
+            if (!v->left)
+            {
+                v->right->parent = NULL;
+                tr = v->right;
+            }
+            else
+            {
+                v->left->parent = NULL;
+                tr = v->left;
+            }
+        }
+        else
+        {
+            if (!v->left)
+            {
+                if (p->left == v)
+                    p->left = v->right;
+                else
+                    p->right = v->right;
+                v->right->parent = p;
+            }
+            else
+            {
+                if (p->left == v)
+                    p->left = v->left;
+                else
+                    p->right = v->left;
+                v->left->parent = p;
+            }
+        }
+        delete v;
+    }
+    else
+    {
+        tree *succ = Next(tr, v->inf);
+        v->inf = succ->inf;
+        if (succ->parent->left == succ)
+        {
+            succ->parent->left = succ->right;
+            if (succ->right)
+                succ->right->parent = succ->parent;
+        }
+        else
+        {
+            succ->parent->right = succ->right;
+            if (succ->right)
+                succ->right->parent = succ->parent;
+        }
+        delete succ;
+    }
+}
+
 void print_tree(tree *tr, int k)
 {
     int n = k;
