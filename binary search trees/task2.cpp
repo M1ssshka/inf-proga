@@ -114,6 +114,18 @@ void print_tree(tree *tr, int k)
     cout << '\n';
 }
 
+int heightNode(tree *tr)
+{
+    if (tr)
+    {
+        return max(heightNode(tr->left), heightNode(tr->right)) + 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main()
 {
 }
