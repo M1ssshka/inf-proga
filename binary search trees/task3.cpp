@@ -73,6 +73,46 @@ int heightTree(tree *tr)
     }
 }
 
+tree *find(tree *tr, int x)
+{
+    if (!tr || x == tr->inf)
+        return tr;
+    if (x < tr->inf)
+        return find(tr->left, x);
+    else
+        return find(tr->right, x);
+}
+
+tree *Max(tree *tr)
+{
+    if (!tr->right)
+        return tr;
+    else
+        return Max(tr->right);
+}
+
+tree *Min(tree *tr)
+{
+    if (!tr->left)
+        return tr;
+    else
+        return Min(tr->left);
+}
+
+tree *Next(tree *tr, int x)
+{
+    tree *n = find(tr, x);
+    if (n->right)
+        return Min(n->right);
+    tree *y = n->parent;
+    while (y && n == y->right)
+    {
+        n = y;
+        y = y->parent;
+    }
+    return y;
+}
+
 int main()
 {
 }
