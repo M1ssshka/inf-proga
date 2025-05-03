@@ -61,6 +61,18 @@ void insert(tree *&tr, int x)
     }
 }
 
+int heightTree(tree *tr)
+{
+    if (tr)
+    {
+        return max(heightTree(tr->left), heightTree(tr->right)) + 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main()
 {
 }
