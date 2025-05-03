@@ -236,6 +236,14 @@ void print_tree(tree *tr, int k)
     cout << '\n';
 }
 
+tree *removeOddNodes(tree *tr, tree *&tree)
+{
+    if (tr->left) removeOddNodes(tr->left, tree);
+    if (tr->right) removeOddNodes(tr->right, tree);
+    if ((tr->inf) % 2) del(tree, tr);
+    return tree;
+}
+
 int main()
 {
 }
