@@ -126,6 +126,17 @@ int heightNode(tree *tr)
     }
 }
 
+void printLeaves(tree *tr)
+{
+    if (tr)
+    {
+        if (!tr->left && !tr->right)
+            cout << tr->inf << ' ';
+        printLeaves(tr->left);
+        printLeaves(tr->right);
+    }
+}
+
 int main()
 {
 }
