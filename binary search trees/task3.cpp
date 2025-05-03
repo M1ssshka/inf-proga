@@ -246,4 +246,19 @@ tree *removeOddNodes(tree *tr, tree *&tree)
 
 int main()
 {
+    int n;
+    cin >> n;
+    vector<int> nums;
+    tree *tr1 = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        int t;
+        cin >> t;
+        if (t % 2 == 0)
+            nums.push_back(t);
+        insert(tr1, t);
+    }
+    print_tree(tr1, heightTree(tr1));
+    tree *tr = removeOddNodes(tr1, tr1);
+    print_tree(tr, heightTree(tr));
 }
