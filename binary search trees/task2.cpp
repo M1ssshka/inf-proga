@@ -139,4 +139,16 @@ void printLeaves(tree *tr)
 
 int main()
 {
+    int n;
+    cin >> n;
+    tree *tr1 = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        int t;
+        cin >> t;
+        insert(tr1, t);
+    }
+    print_tree(tr1, heightNode(tr1));
+    printLeaves(tr1);
+    cout << '\n';
 }
