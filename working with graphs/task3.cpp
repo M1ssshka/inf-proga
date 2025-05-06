@@ -28,4 +28,10 @@ int main()
     }
     used.assign(n, {});
     dfs(0);
+    bool f = true;
+    for (int i = 0; i < n; i++)
+    {
+        if (!used[i]) f = false;
+    }
+    (f) ? (cout << "YES" << '\n') : (cout << "NO" << '\n');
 }
