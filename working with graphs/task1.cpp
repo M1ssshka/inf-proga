@@ -18,4 +18,11 @@ int main()
         gr[v].push_back(u);
         gr[u].push_back(v);
     }
+    int x;
+    cin >> x;
+    x--;
+    cout << '\n' << gr[x].size() << '\n';
+    for (int i = 0; i < n; i++) {
+        cout << i + 1 << " : " << gr[i].size() << '\n';
+    }
 }
