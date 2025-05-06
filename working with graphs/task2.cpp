@@ -41,4 +41,18 @@ int main()
     cout << '\n';
     gr[A].push_back(B);
     gr[B].push_back(A);
+    for (int i = 0; i < gr.size(); i++)
+    {
+        sort(gr[i].begin(), gr[i].end());   
+        gr[i].erase(unique(gr[i].begin(), gr[i].end()), gr[i].end());
+    }
+    for (int i = 0; i < gr.size(); i++)
+    {
+        cout << i + 1 << " : ";
+        for (int j : gr[i])
+        {
+            cout << j + 1 << ' ';
+        }
+        cout << '\n';
+    }
 }
