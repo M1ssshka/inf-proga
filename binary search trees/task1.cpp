@@ -150,7 +150,7 @@ int main()
     tree *X = find(tr1, x);
     print_tree(tr1, heightNode(tr1));
     int ans = heightNode(X) - 1;
-    (ans > 0) ? (cout << ans) : (cout << "Node not found\n");
+    (ans >= 0) ? (cout << ans) : (cout << "Node not found\n");
     cout << '\n';
 }
 
