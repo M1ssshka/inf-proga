@@ -58,6 +58,44 @@ tree *sibling(tree *x) {
         return nullptr;
 }
 
+void left_rotate(tree *&tr, tree *x) {
+    tree *y = x->right;
+    x->right = y->left;
+    if (y->left)
+        y->left->parent = x;
+    y->parent = x->parent;
+    if (x->parent)
+        if (x == x->parent->left)
+            x->parent->left = y;
+        else
+            x->parent->right = y;
+    y->left = x;
+    x->parent = y;
+    if (!y->parent) {
+        y->clr = 'b';
+        tr = y;
+    }
+}
+
+void right_rotate(tree *&tr, tree *x) {
+    tree *y = x->left;
+    x->left = y->right;
+    if (y->right)
+        y->right->parent = x;
+    y->parent = x->parent;
+    if (x->parent)
+        if (x == x->parent->left)
+            x->parent->left = y;
+        else
+            x->parent->right = y;
+    y->right = x;
+    x->parent = y;
+    if (!y->parent) {
+        y->clr = 'b';
+        tr = y;
+    }
+}
+
 int main() {
 
 }
