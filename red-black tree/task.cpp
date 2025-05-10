@@ -382,5 +382,20 @@ int sumLeaves(tree *&tr) {
 }
 
 int main() {
-
+    int n, temp;
+    cout << "Введите количество чисел в дереве: ";
+    cin >> n;
+    vector<int> m(n);
+    cout << "Введите " << n << " чисел: ";
+    cin >> temp;
+    tree *tr = root(temp);
+    for (int i = 0; i < n - 1; i++) {
+        int t;
+        cin >> t;
+        m[i] = t;
+        insert(tr, tr, t);
+    }
+    inorder(tr);
+    cout << '\n';
+    cout << sumLeaves(tr);
 }
