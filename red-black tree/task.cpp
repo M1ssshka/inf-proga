@@ -96,6 +96,84 @@ void right_rotate(tree *&tr, tree *x) {
     }
 }
 
+void insert_case1(tree *&tr, tree *x);
+void insert_case2(tree *&tr, tree *x);
+void insert_case3(tree *&tr, tree *x);
+void insert_case4(tree *&tr, tree *x);
+void insert_case5(tree *&tr, tree *x);
+
+void insert_case5(tree *&tr, tree *x) {
+    tree *g = grandparent(x);
+    x->parent->clr = 'b';
+    g->clr = 'r';
+    if (x == x->parent->left && x->parent == g->left)
+        right_rotate(tr, g);
+    else
+        left_rotate(tr, g);
+}
+
+void insert_case4(tree *&tr, tree *x) {
+    tree *g = grandparent(x);
+    if (!g) return;
+    if (x == x->parent->right && x->parent == g->left) {
+        left_rotate(tr, x);
+        x = x->left;
+    }
+    else
+        if (x == x->parent->left && x->parent == g->right) {
+            right_rotate(tr, x->parent);
+            x = x->right;
+        }
+    insert_case5(tr, x);
+}
+
+
+void insert_case3(tree *&tr, tree *x) {
+    tree *u = uncle(x);
+    tree *g = grandparent(x);
+    if (u && u->clr == 'r' && x->parent->clr == 'r') {
+        x->parent->clr = 'b';
+        u->clr = 'b';
+        g->clr = 'r';
+        insert_case1(tr, g);
+    }
+    else insert_case4(tr, x);
+}
+
+void insert_case2(tree *&tr, tree *x) {
+    if (x->parent->clr == 'r')
+        insert_case3(tr, x);
+    else
+        return;
+}
+
+void insert_case1(tree *&tr, tree *x) {
+    if (!x->parent)
+        x->clr = 'b';
+    else
+        insert_case2(tr, x);
+}
+
+void insert(tree *&tr, tree *prev, int x) {
+    if (x < prev->inf && !prev->left) {
+        prev->left = node(prev, x);
+        insert_case1(tr, prev->left);
+    }
+    else {
+        if (x > prev->inf && !prev->right) {
+            prev->right = node(prev, x);
+            insert_case1(tr, prev->right);
+        }
+        else {
+            if (x < prev->inf && prev->left)
+                insert(tr, prev->left, x);
+            else
+                if (x > prev->inf && prev->right)
+                    insert(tr, prev->right, x);
+        }
+    }
+}
+
 int main() {
 
 }
