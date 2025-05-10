@@ -278,6 +278,49 @@ void delete_case6(tree *&tr, tree *x) {
     }
 }
 
+void replace(tree *&tr, tree *x) {
+    if (x->left) {
+        tree *ch = x->left;
+        ch->parent = x->parent;
+        if (x->parent) {
+            if (x == x->parent->left)
+                x->parent->left = ch;
+            else
+                x->parent->right = ch;
+        }
+        else
+            tr = ch;
+    }
+    else {
+        tree *ch = x->right;
+        ch->parent = x->parent;
+        if (x->parent) {
+            if (x == x->parent->left)
+                x->parent->left = ch;
+            else
+                x->parent->right = ch;
+        }
+        else
+            tr = x;
+    }
+}
+
+tree *Max(tree *tr)
+{
+    if (!tr->right)
+        return tr;
+    else
+        return Max(tr->right);
+}
+
+tree *Min(tree *tr)
+{
+    if (!tr->left)
+        return tr;
+    else
+        return Min(tr->left);
+}
+
 void delete_one(tree *&tr, tree *x) {
     if (x->right && x->left) {
         tree *buf;
