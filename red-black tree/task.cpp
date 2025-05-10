@@ -183,6 +183,139 @@ void inorder(tree *tr)
     }
 }
 
+void delete_case1(tree *&tr, tree *x);
+void delete_case2(tree *&tr, tree *x);
+void delete_case3(tree *&tr, tree *x);
+void delete_case4(tree *&tr, tree *x);
+void delete_case5(tree *&tr, tree *x);
+void delete_case6(tree *&tr, tree *x);
+
+void delete_case1(tree *&tr, tree *x) {
+    if (!x->parent) {
+        if (x->left)
+            tr = x->left;
+        else
+            tr = x->right;
+    }
+    else
+        delete_case2(tr, x);
+}
+
+void delete_case2(tree *&tr, tree *x) {
+    tree *s = sibling(x);
+    if (s && s->clr == 'r') {
+        x->parent->clr = 'r';
+        s->clr = 'b';
+        if (x == x->parent->left) {
+            x->parent->left = nullptr;
+            left_rotate(tr, x->parent);
+        }
+        else {
+            x->parent->right = nullptr;
+            right_rotate(tr, x->parent);
+        }
+    }
+    delete_case3(tr, x);
+}
+
+void delete_case3(tree *&tr, tree *x) {
+    tree *s = sibling(x);
+    if (x->parent->clr == 'b' && s->clr == 'b' && (!s->left || s->left->clr == 'b') &&
+        (!s->right || s->right->clr == 'b')) {
+        s->clr = 'r';
+        delete_case1(tr, x);
+    }
+    else
+        delete_case4(tr, x);
+}
+
+void delete_case4(tree *&tr, tree *x) {
+    tree *s = sibling(x);
+    if (s && x->parent->clr == 'r' && s->clr == 'b' && (!s->left || s->left->clr == 'b') &&
+        (!s->right || s->right->clr == 'b')) {
+        s->clr = 'r';
+        x->parent->clr = 'b';
+    }
+    else
+        delete_case5(tr, x);
+}
+
+void delete_case5(tree *&tr, tree *x) {
+    tree *s = sibling(x);
+    if (s && s->clr == 'b') {
+        if (x == x->parent->left && (s->left && s->left->clr == 'r') &&
+        (!s->right || s->right->clr == 'b')) {
+            s->clr = 'r';
+            s->left->clr = 'b';
+            right_rotate(tr, s);
+        }
+        else
+            if (x == x->parent->right && (s->right && s->right->clr == 'r') &&
+        (!s->left || s->left->clr == 'b')) {
+                s->clr = 'r';
+                s->right->clr = 'b';
+                left_rotate(tr, s);
+            }
+    }
+    delete_case6(tr, x);
+}
+
+void delete_case6(tree *&tr, tree *x) {
+    tree *s = sibling(x);
+    if (s) {
+        s->clr = x->parent->clr;
+        x->parent->clr = 'b';
+        if (x == x->parent->left) {
+            s->right->clr = 'b';
+            x->parent->left = nullptr;
+            left_rotate(tr, x->parent);
+        }
+        else {
+            s->left->clr = 'b';
+            x->parent->right = nullptr;
+            right_rotate(tr, x->parent);
+        }
+    }
+}
+
+void delete_one(tree *&tr, tree *x) {
+    if (x->right && x->left) {
+        tree *buf;
+        if (x->inf <= tr->inf)
+            buf = Max(x->left);
+        else
+            buf = Min(x->right);
+        x->inf = buf->inf;
+        x = buf;
+    }
+    if (x->left || x->right) {
+        tree *ch;
+        if (x->left && !x->right)
+            ch = x->left;
+        if (!x->left && x->right)
+            ch = x->right;
+        replace(tr, x);
+        if (x->clr == 'b') {
+            if (ch->clr == 'r')
+                ch->clr = 'b';
+            else
+                delete_case1(tr, x);
+        }
+    }
+    else {
+        if (x->clr == 'b') {
+            delete_case1(tr, x);
+        }
+        else {
+            if (x == x->parent->left)
+                x->parent->left = nullptr;
+            else
+                x->parent->right = nullptr;
+        }
+    }
+    delete x;
+}
+
 int main() {
 
 }
