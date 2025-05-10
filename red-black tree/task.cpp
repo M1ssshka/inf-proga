@@ -359,6 +359,18 @@ void delete_one(tree *&tr, tree *x) {
     delete x;
 }
 
+int heightTree(tree *tr)
+{
+    if (tr)
+    {
+        return max(heightTree(tr->left), heightTree(tr->right)) + 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int main() {
 
 }
