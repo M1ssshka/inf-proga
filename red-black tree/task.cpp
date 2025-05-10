@@ -174,6 +174,15 @@ void insert(tree *&tr, tree *prev, int x) {
     }
 }
 
+void inorder(tree *tr)
+{
+    if (tr) {
+        inorder(tr->left);
+        cout << tr->inf << ' ';
+        inorder(tr->right);
+    }
+}
+
 int main() {
 
 }
