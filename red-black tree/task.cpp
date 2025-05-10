@@ -371,6 +371,16 @@ int heightTree(tree *tr)
     }
 }
 
+int sumLeaves(tree *&tr) {
+    if (tr) {
+        if (!tr->left && !tr->right) {
+            return tr->inf;
+        }
+        return sumLeaves(tr->left) + sumLeaves(tr->right);
+    }
+    return 0;
+}
+
 int main() {
 
 }
