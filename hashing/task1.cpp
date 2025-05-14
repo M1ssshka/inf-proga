@@ -156,3 +156,23 @@ void enterHash(vector<List> &hashTable) {
     int k = h(temp.date_of_birthday.year, hashTable.size());
     push(hashTable[k].h, hashTable[k].t, temp);
 }
+
+int main() {
+    ifstream in("workers.txt");
+    vector<worker> A(20);
+    int M = 16;
+    string str;
+    for (int i = 0; i < 20; i++) {
+        getline(in, str);
+        A[i] = str_to_worker(str);
+    }
+    vector<List> hashTable = createHashTable(A, M);
+    printHashTable(hashTable);
+    enterHash(hashTable);
+    printHashTable(hashTable);
+    findHash(hashTable, 1987);
+    delHash(hashTable, 1987);
+    printHashTable(hashTable);
+}
+
+// Red, 7, 15.03.1993, Senior, 88000
