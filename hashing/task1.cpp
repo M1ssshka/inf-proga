@@ -113,3 +113,46 @@ worker str_to_worker(string str) {
     human.pay = stoi(str.substr(k, k1 - k));
     return human;
 }
+
+vector<List> createHashTable(vector<worker> A, int M) {
+    vector<List> hashTable(M);
+    for (int i = 0; i < A.size(); i++) {
+        int k = h(A[i].date_of_birthday.year, M);
+        push(hashTable[k].h, hashTable[k].t, A[i]);
+    }
+    return hashTable;
+}
+
+void printHashTable(vector<List> hashTable) {
+    for (int i = 0; i < hashTable.size(); i++) {
+        cout << i << " : \n";
+        print(hashTable[i].h, hashTable[i].t);
+    }
+}
+
+void findHash(vector<List> hashTable, int x) {
+    int k = h(x, hashTable.size());
+    vector<list*> temp = find(hashTable[k].h, hashTable[k].t, x);
+    if (temp.size() == 0) cout << "Not found\n";
+    else
+        for (int i = 0; i < temp.size(); i++) {
+            print_worker(temp[i]->inf);
+        }
+}
+
+void delHash(vector<List> &hashTable, int x) {
+    int k = h(x, hashTable.size());
+    vector<list*> temp = find(hashTable[k].h, hashTable[k].t, x);
+    for (int i = 0; i < temp.size(); i++) {
+        del_node(hashTable[k].h, hashTable[k].t, temp[i]);
+    }
+}
+
+void enterHash(vector<List> &hashTable) {
+    string x;
+    cout << "Введите новый элемент: ";
+    getline(cin, x);
+    worker temp = str_to_worker(x);
+    int k = h(temp.date_of_birthday.year, hashTable.size());
+    push(hashTable[k].h, hashTable[k].t, temp);
+}
