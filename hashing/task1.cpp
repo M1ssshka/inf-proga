@@ -88,3 +88,8 @@ void del_node(list *&h, list *&t, list *&r) {
     }
     delete r;
 }
+
+int h(int x, int M) {
+    double A = (sqrt(5) - 1) / 2;
+    return int(M * (x * A - int(x * A)));;
+}
