@@ -59,3 +59,13 @@ void print(list *&h, list *&t) {
     }
     cout << '\n';
 }
+
+vector<list*> find(list *&h, list *&t, int x) {
+    vector<list*> ans;
+    list *p = h;
+    while(p) {
+        if (p->inf.date_of_birthday.year == x) ans.push_back(p);
+        p = p->next;
+    }
+    return ans;
+}
