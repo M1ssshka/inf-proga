@@ -69,3 +69,22 @@ vector<list*> find(list *&h, list *&t, int x) {
     }
     return ans;
 }
+
+void del_node(list *&h, list *&t, list *&r) {
+    if (r == h && r == t) {
+        h = t = nullptr;
+    }
+    else if (r == h) {
+        h = h->next;
+        h->prev = nullptr;
+    }
+    else if (r == t) {
+        t = t->prev;
+        t->next = nullptr;
+    }
+    else {
+        r->next->prev = r->prev;
+        r->prev->next = r->next;
+    }
+    delete r;
+}
