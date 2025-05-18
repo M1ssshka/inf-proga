@@ -61,3 +61,11 @@ void print_worker(worker human) {
     cout << human.surname << ", " << i << human.date_of_birthday.day << "." << i1 << human.date_of_birthday.month << "."
         << human.date_of_birthday.year << ", " << human.experience << ", " << human.post << ", " << human.pay << endl;
 }
+
+void printHashTable(vector<worker> hashTable) {
+    for (int i = 0; i < hashTable.size(); i++) {
+        cout << i << " : ";
+        if (hashTable[i].date_of_birthday.day) print_worker(hashTable[i]);
+        else cout << '\n';
+    }
+}
