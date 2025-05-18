@@ -99,3 +99,19 @@ void enterHash(vector<worker> &hashTable) {
         else j++;
     }
 }
+
+int main() {
+    ifstream in("workers.txt");
+    vector<worker> A(20);
+    int M = 21;
+    string str;
+    for (int i = 0; i < 20; i++) {
+        getline(in, str);
+        A[i] = str_to_worker(str);
+    }
+    vector<worker> hash_Table = createHashTable(A, M);
+    printHashTable(hash_Table);
+    enterHash(hash_Table);
+    printHashTable(hash_Table);
+    findHash(hash_Table, 1987);
+}
