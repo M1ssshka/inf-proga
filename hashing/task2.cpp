@@ -37,3 +37,20 @@ worker str_to_worker(string str) {
     human.pay = stoi(str.substr(k, k1 - k));
     return human;
 }
+
+vector<worker> createHashTable(vector<worker> A, int M) {
+    vector<worker> hashTable(M);
+    for (int i = 0; i < A.size(); i++) {
+        int k = A[i].date_of_birthday.year % M;
+        int j = 0;
+        for (int t = 0; t < M; t++) {
+            int p = (k + j) % M;
+            if (hashTable[p].date_of_birthday.year == 0) {
+                hashTable[p] = A[i];
+                break;
+            }
+            else j++;
+        }
+    }
+    return hashTable;
+}
