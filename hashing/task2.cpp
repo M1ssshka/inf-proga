@@ -82,3 +82,20 @@ void findHash(vector<worker> hashTable, int x) {
     }
     if (!f) cout << "Not found\n";
 }
+
+void enterHash(vector<worker> &hashTable) {
+    string x;
+    cout << "Введите новый элемент: ";
+    getline(cin, x);
+    worker temp = str_to_worker(x);
+    int k = temp.date_of_birthday.year % hashTable.size();
+    int j = 0;
+    for (int t = 0; t < hashTable.size(); t++) {
+        int p = (k + j) % hashTable.size();
+        if (hashTable[p].date_of_birthday.year == 0) {
+            hashTable[p] = temp;
+            break;
+        }
+        else j++;
+    }
+}
