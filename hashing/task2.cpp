@@ -69,3 +69,16 @@ void printHashTable(vector<worker> hashTable) {
         else cout << '\n';
     }
 }
+
+void findHash(vector<worker> hashTable, int x) {
+    int k = x % hashTable.size();
+    bool f = false;
+    for (int t = 0; t < hashTable.size(); t++) {
+        int p = (k + t) % hashTable.size();
+        if (hashTable[p].date_of_birthday.year == x) {
+            print_worker(hashTable[p]);
+            f = true;
+        }
+    }
+    if (!f) cout << "Not found\n";
+}
