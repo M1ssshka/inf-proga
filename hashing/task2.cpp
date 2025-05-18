@@ -54,3 +54,10 @@ vector<worker> createHashTable(vector<worker> A, int M) {
     }
     return hashTable;
 }
+
+void print_worker(worker human) {
+    string i = human.date_of_birthday.day / 10 == 0 ? "0" : "";
+    string i1 = human.date_of_birthday.month / 10 == 0 ? "0" : "";
+    cout << human.surname << ", " << i << human.date_of_birthday.day << "." << i1 << human.date_of_birthday.month << "."
+        << human.date_of_birthday.year << ", " << human.experience << ", " << human.post << ", " << human.pay << endl;
+}
