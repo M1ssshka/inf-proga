@@ -115,3 +115,5 @@ int main() {
     printHashTable(hash_Table);
     findHash(hash_Table, 1987);
 }
+
+// Red, 7, 15.03.1993, Senior, 88000

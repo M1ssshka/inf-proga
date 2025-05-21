@@ -1,0 +1,20 @@
+﻿Smith, 5, 12.03.1985, Senior, 85000
+Johnson, 3, 25.07.1990, Middle, 75000
+Williams, 10, 14.11.1980, Team Lead, 95000
+Brown, 2, 30.05.1995, Junior, 50000
+Jones, 7, 22.09.1988, Senior, 65000
+Garcia, 1, 18.04.1998, Junior, 45000
+Miller, 15, 05.02.1975, Team Lead, 150000
+Davis, 4, 10.12.1992, Middle, 90000
+Rodriguez, 6, 03.08.1987, Senior, 110000
+Martinez, 8, 19.06.1984, Team Lead, 100000
+Hernandez, 12, 27.01.1982, Team Lead, 120000
+Lopez, 9, 15.10.1986, Senior, 80000
+Gonzalez, 3, 08.03.1993, Middle, 70000
+Wilson, 11, 20.07.1981, Team Lead, 130000
+Anderson, 5, 09.05.1990, Middle, 55000
+Thomas, 14, 01.12.1978, Team Lead, 140000
+Taylor, 2, 23.02.1996, Junior, 48000
+Moore, 7, 17.09.1989, Senior, 68000
+Jackson, 10, 29.04.1983, Team Lead, 92000
+Lee, 6, 11.08.1987, Senior, 78000
